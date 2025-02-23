@@ -1,0 +1,146 @@
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  background-color: #f0f0f0; /* خلفية رمادية فاتحة */
+  padding: 20px; /* مسافة إضافية للأجهزة الصغيرة */
+}
+
+.login-container {
+  width: 100%;
+  max-width: 400px; /* أقصى عرض للصندوق */
+  text-align: center;
+}
+
+/* شعار "طوارئ الامطار" */
+.logo {
+  margin-bottom: 30px; /* مسافة كافية بين الشعار والنموذج */
+}
+
+.logo-text {
+  font-size: 24px;
+  color: #007bff; /* لون أزرق */
+  margin: 0;
+}
+
+/* عنوان "Login" */
+.login-title {
+  font-size: 22px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* تصميم بطاقة تسجيل الدخول */
+.login-card {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* ظل خفيف */
+  width: 100%;
+}
+
+/* تصميم حقول الإدخال */
+.form-group {
+  margin-bottom: 15px; /* مسافة بين الحقول */
+  text-align: left;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px; /* مسافة بين النص وحقل الإدخال */
+  color: #555;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0 10px 0; /* مسافة أعلى وأسفل */
+  border: 1px solid #ddd; /* حدود رمادية فاتحة */
+  border-radius: 4px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+input:focus {
+  outline: none;
+  border-color: #007bff; /* لون أزرق عند التركيز */
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+}
+
+/* تصميم الزر */
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff; /* زر أزرق */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #0056b3; /* لون أغمق عند التمرير */
+}
+
+/* شريط التوثيق */
+.footer {
+  margin-top: 30px; /* مسافة كافية بين النموذج والشريط */
+  font-size: 14px;
+  color: #777;
+}
+
+/* تصميم متجاوب للأجهزة المختلفة */
+@media (max-width: 768px) {
+  .login-card {
+    width: 90%;
+    padding: 15px;
+  }
+
+  .logo-text {
+    font-size: 22px;
+  }
+
+  .login-title {
+    font-size: 20px;
+  }
+
+  input,
+  button {
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  .footer {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-card {
+    width: 85%;
+    padding: 10px;
+  }
+
+  .logo-text {
+    font-size: 20px;
+  }
+
+  .login-title {
+    font-size: 18px;
+  }
+
+  input,
+  button {
+    font-size: 12px;
+    padding: 6px;
+  }
+
+  .footer {
+    font-size: 10px;
+  }
+}
