@@ -6,10 +6,9 @@ const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZ
 const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 
 document.addEventListener('DOMContentLoaded', function () {
+    // Fill user data
     const user = { username: 'Mohamed Mokhtar', jobNumber: '903881' };
     const location = 'Current Location';
-
-    // Fill user data
     document.getElementById('username').value = user.username;
     document.getElementById('jobNumber').value = user.jobNumber;
     document.getElementById('location').value = location;
@@ -21,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('datetime').value = formattedDateTime;
     }
 
-    // Generate a unique report number based on work type and sector
+    // Generate a unique report number
     function generateReportNumber() {
         const reportType = document.getElementById('reportType').value;
         const sector = document.getElementById('sector').value;
@@ -39,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    // Load dynamic templates based on selected work type
+    // Load dynamic templates
     function loadTemplate() {
         const reportType = document.getElementById('reportType').value;
         const templateSection = document.getElementById('dynamicTemplates');
@@ -49,28 +48,31 @@ document.addEventListener('DOMContentLoaded', function () {
 
         let templates = "";
 
-        // Maintenance templates (RM, PM, CM)
         if (['RM', 'PM', 'CM'].includes(reportType)) {
             templates += `
                 <div class="template">
                     <h3>Assets</h3>
                     <div id="assetsList"></div>
-                    <button class="add-btn" onclick="addAsset()">+ Add Asset</button>
+                    <button class="add-btn blue-button" onclick="addAsset()">+ Add Asset</button>
                 </div>
+                <hr class="divider">
                 <div class="template">
                     <h3>Report/Notes</h3>
                     <textarea id="reportNotes" placeholder="Enter report or notes..." style="width: 100%; height: 80px;"></textarea>
                 </div>
+                <hr class="divider">
                 <div class="template">
                     <h3>Employees</h3>
                     <div id="workforceList"></div>
-                    <button class="add-btn" onclick="addWorkforce()">+ Add Workforce</button>
+                    <button class="add-btn blue-button" onclick="addWorkforce()">+ Add Workforce</button>
                 </div>
+                <hr class="divider">
                 <div class="template">
                     <h3>Equipment</h3>
                     <div id="equipmentList"></div>
-                    <button class="add-btn" onclick="addEquipment()">+ Add Equipment</button>
+                    <button class="add-btn blue-button" onclick="addEquipment()">+ Add Equipment</button>
                 </div>
+                <hr class="divider">
                 <div class="template">
                     <h3>Images</h3>
                     <label>Before:</label>
@@ -78,6 +80,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     <label>After:</label>
                     <input type="file" id="afterImage" accept="image/*">
                 </div>
+                <hr class="divider">
                 <div class="template">
                     <h3>Work Status</h3>
                     <select id="workStatus">
@@ -90,27 +93,30 @@ document.addEventListener('DOMContentLoaded', function () {
             `;
         }
 
-        // Requests (Req)
         if (reportType === 'Req') {
             templates += `
                 <div class="template">
                     <h3>Request Number</h3>
                     <input type="text" id="requestNumber" placeholder="Enter request number">
                 </div>
+                <hr class="divider">
                 <div class="template">
                     <h3>Report/Notes</h3>
                     <textarea id="reportNotes" placeholder="Enter report or notes..." style="width: 100%; height: 80px;"></textarea>
                 </div>
+                <hr class="divider">
                 <div class="template">
                     <h3>Employees</h3>
                     <div id="workforceList"></div>
-                    <button class="add-btn" onclick="addWorkforce()">+ Add Workforce</button>
+                    <button class="add-btn blue-button" onclick="addWorkforce()">+ Add Workforce</button>
                 </div>
+                <hr class="divider">
                 <div class="template">
                     <h3>Equipment</h3>
                     <div id="equipmentList"></div>
-                    <button class="add-btn" onclick="addEquipment()">+ Add Equipment</button>
+                    <button class="add-btn blue-button" onclick="addEquipment()">+ Add Equipment</button>
                 </div>
+                <hr class="divider">
                 <div class="template">
                     <h3>Images</h3>
                     <label>Before:</label>
@@ -118,6 +124,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     <label>After:</label>
                     <input type="file" id="afterImage" accept="image/*">
                 </div>
+                <hr class="divider">
                 <div class="template">
                     <h3>Work Status</h3>
                     <select id="workStatus">
@@ -130,7 +137,6 @@ document.addEventListener('DOMContentLoaded', function () {
             `;
         }
 
-        // Emergency (E)
         if (reportType === 'E') {
             templates += `
                 <div class="template">
@@ -144,20 +150,24 @@ document.addEventListener('DOMContentLoaded', function () {
                         <option value="Other">Other</option>
                     </select>
                 </div>
+                <hr class="divider">
                 <div class="template">
                     <h3>Report/Notes</h3>
                     <textarea id="reportNotes" placeholder="Enter emergency details..." style="width: 100%; height: 80px;"></textarea>
                 </div>
+                <hr class="divider">
                 <div class="template">
                     <h3>Employees</h3>
                     <div id="workforceList"></div>
-                    <button class="add-btn" onclick="addWorkforce()">+ Add Workforce</button>
+                    <button class="add-btn blue-button" onclick="addWorkforce()">+ Add Workforce</button>
                 </div>
+                <hr class="divider">
                 <div class="template">
                     <h3>Equipment</h3>
                     <div id="equipmentList"></div>
-                    <button class="add-btn" onclick="addEquipment()">+ Add Equipment</button>
+                    <button class="add-btn blue-button" onclick="addEquipment()">+ Add Equipment</button>
                 </div>
+                <hr class="divider">
                 <div class="template">
                     <h3>Images</h3>
                     <label>Before:</label>
@@ -165,6 +175,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     <label>After:</label>
                     <input type="file" id="afterImage" accept="image/*">
                 </div>
+                <hr class="divider">
                 <div class="template">
                     <h3>Work Status</h3>
                     <select id="workStatus">
@@ -177,13 +188,13 @@ document.addEventListener('DOMContentLoaded', function () {
             `;
         }
 
-        // Inspection (IP)
         if (reportType === 'IP') {
             templates += `
                 <div class="template">
                     <h3>Inspection Report</h3>
                     <textarea id="reportNotes" placeholder="Enter inspection report..." style="width: 100%; height: 80px;"></textarea>
                 </div>
+                <hr class="divider">
                 <div class="template">
                     <h3>Inspection Image</h3>
                     <label>After Inspection:</label>
@@ -220,7 +231,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     <option value="Meter">Meter</option>
                     <option value="Cubic Meter">Cubic Meter</option>
                 </select>
-                <button class="remove-btn" onclick="this.parentElement.parentElement.remove()">- Remove</button>
+                <button class="remove-btn red-button" onclick="this.parentElement.parentElement.remove()">- Remove</button>
             </div>
             <div class="other-asset" style="display: none;">
                 <input type="text" placeholder="Enter other asset type">
@@ -256,7 +267,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 </select>
                 <input type="text" placeholder="Job Number">
                 <input type="number" placeholder="Work Hours">
-                <button class="remove-btn" onclick="this.parentElement.parentElement.remove()">- Remove</button>
+                <button class="remove-btn red-button" onclick="this.parentElement.parentElement.remove()">- Remove</button>
             </div>
             <div class="other-workforce" style="display: none;">
                 <input type="text" placeholder="Enter other workforce type">
@@ -308,7 +319,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     <option value="Square Meter">Square Meter</option>
                     <option value="Ton">Ton</option>
                 </select>
-                <button class="remove-btn" onclick="this.parentElement.parentElement.remove()">- Remove</button>
+                <button class="remove-btn red-button" onclick="this.parentElement.parentElement.remove()">- Remove</button>
             </div>
             <div class="other-equipment" style="display: none;">
                 <input type="text" placeholder="Enter other equipment type">
@@ -386,11 +397,18 @@ document.addEventListener('DOMContentLoaded', function () {
             console.error('Error submitting report:', error);
             alert('Failed to submit report.');
         } else {
-            alert('Report submitted successfully!');
-            window.location.href = 'profile.html';
+            // Show success message
+            const successMessage = document.getElementById('successMessage');
+            successMessage.style.display = 'block';
+
+            // Redirect to profile.html after 5 seconds
+            setTimeout(function () {
+                window.location.href = 'profile.html';
+            }, 5000);
         }
     });
 
     // Run functions on page load
     updateDateTime();
+    setInterval(updateDateTime, 1000); // Update time every second
 });
