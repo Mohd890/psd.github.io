@@ -71,20 +71,43 @@ input:focus, select:focus, textarea:focus {
     outline: none;
 }
 
-/* Small Buttons */
-.small-button {
+/* Add Button (Blue) */
+.add-btn {
+    background-color: #3498db; /* Blue */
+    color: white;
+    border: none;
     padding: 8px 16px;
-    font-size: 14px;
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.small-button:hover {
+.add-btn:hover {
+    background-color: #2980b9; /* Darker Blue */
     transform: translateY(-1px);
 }
 
-.small-button:active {
+.add-btn:active {
+    transform: translateY(0);
+}
+
+/* Remove Button (Red) */
+.remove-btn {
+    background-color: #e74c3c; /* Red */
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.remove-btn:hover {
+    background-color: #c0392b; /* Darker Red */
+    transform: translateY(-1px);
+}
+
+.remove-btn:active {
     transform: translateY(0);
 }
 
