@@ -78,9 +78,13 @@ input:focus, select:focus, textarea:focus {
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
+    background-color: #3498db;
+    color: white;
+    border: none;
 }
 
 .small-button:hover {
+    background-color: #2980b9;
     transform: translateY(-1px);
 }
 
@@ -126,4 +130,98 @@ input:focus, select:focus, textarea:focus {
 }
 
 .back-button:hover {
-    background-color: #27ae60
+    background-color: #27ae60;
+}
+
+/* Add and Remove Buttons */
+.add-btn {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.add-btn:hover {
+    background-color: #2980b9;
+}
+
+.remove-btn {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.remove-btn:hover {
+    background-color: #c0392b;
+}
+
+/* Dynamic Templates */
+.asset-item, .workforce-item, .equipment-item {
+    margin-bottom: 15px;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.asset-entry, .workforce-entry, .equipment-entry {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.other-asset, .other-workforce, .other-equipment, .other-code {
+    display: none;
+    margin-top: 10px;
+}
+
+/* Images Section */
+.template .images-section {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.template .images-section label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.template .images-section input[type="file"] {
+    margin-bottom: 10px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .form-group {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    label {
+        text-align: left;
+        margin-bottom: 5px;
+    }
+
+    .container {
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 22px;
+    }
+
+    h2 {
+        font-size: 18px;
+    }
+}
