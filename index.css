@@ -1,0 +1,122 @@
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  background-color: #f0f0f0; /* خلفية رمادية فاتحة */
+  padding: 20px; /* مسافة إضافية للأجهزة الصغيرة */
+}
+
+.login-container {
+  width: 100%;
+  max-width: 400px; /* أقصى عرض للصندوق */
+  text-align: center;
+}
+
+.logo {
+  margin-bottom: 20px;
+}
+
+.logo-img {
+  max-width: 150px;
+  height: auto;
+}
+
+.welcome-message {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+  font-size: 18px;
+}
+
+.login-card {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* ظل خفيف */
+  width: 100%;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ddd; /* حدود رمادية فاتحة */
+  border-radius: 4px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+input:focus {
+  outline: none;
+  border-color: #007bff; /* لون أزرق عند التركيز */
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff; /* زر أزرق */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #0056b3; /* لون أغمق عند التمرير */
+}
+
+#error-message {
+  margin-top: 10px;
+  color: red;
+  font-size: 14px;
+  display: none;
+}
+
+/* تصميم متجاوب للأجهزة المختلفة */
+@media (max-width: 768px) {
+  .login-card {
+    width: 90%;
+    padding: 15px;
+  }
+
+  input,
+  button {
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  .logo-img {
+    max-width: 120px;
+  }
+
+  .welcome-message {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-card {
+    width: 85%;
+    padding: 10px;
+  }
+
+  input,
+  button {
+    font-size: 12px;
+    padding: 6px;
+  }
+
+  .logo-img {
+    max-width: 100px;
+  }
+
+  .welcome-message {
+    font-size: 14px;
+  }
+}
