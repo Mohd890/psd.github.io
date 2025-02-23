@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Profile</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="profile.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- إضافة Chart.js -->
+  </head>
+  <body>
+    <div class="top-bar">
+      <div class="dropdown">
+        <button class="dropbtn">Menu</button>
+        <div class="dropdown-content">
+          <a href="#">Statistics</a>
+          <a href="#">Archive</a>
+          <a href="#">Completed Tasks</a>
+          <a href="#">Ongoing Tasks</a>
+          <a href="#">Mail</a>
+          <a href="#">Notifications</a>
+          <a href="#">New Tasks</a>
+          <a href="#">Reorganize</a>
+          <a href="#" onclick="logout()">Logout</a> <!-- زر تسجيل الخروج -->
+        </div>
+      </div>
+      <button class="report-btn" id="reportBtn" onclick="window.location.href='report.html'">Create New Report</button>
+    </div>
+
+    <div class="profile-container">
+      <div class="profile-header">
+        <h1>User Profile</h1>
+      </div>
+      <div class="profile-info">
+        <div class="profile-pic">
+          <img src="IMG_7468.jpeg" alt="Profile Picture" />
+        </div>
+        <div class="profile-details">
+          <p><strong>Name:</strong> Mohamed Mokhtar Aly Alkersh</p>
+          <p><strong>Employee ID:</strong> 903881</p>
+          <p><strong>Job Title:</strong> Admin</p>
+          <p><strong>Admin:</strong> Admin</p>
+        </div>
+      </div>
+
+      <div class="statistics">
+        <h2>Statistics</h2>
+        <div class="stats-grid">
+          <div class="stat-box">
+            <h3>Total Reports</h3>
+            <p id="totalReports">0</p>
+          </div>
+          <div class="stat-box">
+            <h3>Completed Reports</h3>
+            <p id="completedReports">0</p>
+          </div>
+          <div class="stat-box">
+            <h3>Ongoing Reports</h3>
+            <p id="inProgressReports">0</p>
+          </div>
+          <div class="stat-box">
+            <h3>Closed Reports</h3>
+            <p id="closedReports">0</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="charts">
+        <div class="chart">
+          <h3>Employee Comparison</h3>
+          <canvas id="employeeChart"></canvas>
+        </div>
+        <div class="chart">
+          <h3>Completed vs Incomplete Tasks</h3>
+          <canvas id="taskChart"></canvas>
+        </div>
+        <div class="chart">
+          <h3>Most Active Sectors</h3>
+          <canvas id="sectorChart"></canvas>
+        </div>
+        <div class="chart">
+          <h3>Most Maintained Assets</h3>
+          <canvas id="assetChart"></canvas>
+        </div>
+      </div>
+
+      <div class="admin-section" id="adminSection">
+        <h2>Admin Controls</h2>
+        <div class="admin-actions">
+          <button onclick="window.location.href='manage-users.html'">
+            Manage Users
+          </button>
+          <button onclick="window.location.href='add-user.html'">
+            Add New User
+          </button>
+          <button onclick="window.location.href='edit-report.html'">
+            Edit Report Design
+          </button>
+          <button onclick="window.location.href='edit-login-page.html'">
+            Edit Login Page
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="profile.js"></script>
+  </body>
+</html>
