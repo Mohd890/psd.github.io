@@ -25,7 +25,7 @@ loginForm.addEventListener('submit', async function (e) {
     }
 
     try {
-        // جلب بيانات المستخدم من جدول users في public
+        // جلب بيانات المستخدم من جدول users
         const { data: user, error: userError } = await supabase
             .from('users')
             .select('id, username, full_name, job_number, role, auth_id')
@@ -56,17 +56,8 @@ loginForm.addEventListener('submit', async function (e) {
             return;
         }
 
-        // إزالة البيانات الحساسة قبل التخزين
-        delete authUser.password_hash;
-
-        // دمج بيانات المستخدم من `users` و `auth.users`
-        const loggedInUser = {
-            ...user,
-            email: authUser.email
-        };
-
         // تخزين بيانات المستخدم في localStorage
-        localStorage.setItem('user', JSON.stringify(loggedInUser));
+        localStorage.setItem('user', JSON.stringify(user));
         window.location.href = 'profile.html'; // توجيه إلى صفحة البروفايل
 
     } catch (error) {
