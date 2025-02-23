@@ -5,13 +5,30 @@ const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZ
 
 const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 
-document.addEventListener('DOMContentLoaded', function () {
-    // Fill user data
-    const user = { username: 'Mohamed Mokhtar', jobNumber: '903881' };
-    const location = 'Current Location';
-    document.getElementById('username').value = user.username;
-    document.getElementById('jobNumber').value = user.jobNumber;
-    document.getElementById('location').value = location;
+document.addEventListener('DOMContentLoaded', async function () {
+    // استرداد بيانات المستخدم الحالي من Supabase
+    const { data: { user } } = await supabase.auth.getUser();
+
+    if (user) {
+        // استرداد بيانات المستخدم من جدول users
+        const { data: userData, error } = await supabase
+            .from('users')
+            .select('username, job_number')
+            .eq('id', user.id)
+            .single();
+
+        if (userData) {
+            // تعبئة بيانات المستخدم في الحقول
+            document.getElementById('username').value = userData.username;
+            document.getElementById('jobNumber').value = userData.job_number;
+        } else {
+            console.error('Error fetching user data:', error);
+        }
+    } else {
+        console.error('No user is logged in.');
+        // إذا لم يكن هناك مستخدم مسجل، يمكن توجيهه إلى صفحة تسجيل الدخول
+        window.location.href = 'login.html';
+    }
 
     // Update date and time automatically
     function updateDateTime() {
@@ -53,7 +70,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 <div class="template">
                     <h3>Assets</h3>
                     <div id="assetsList"></div>
-                    <button class="add-btn blue-button" onclick="addAsset()">+ Add Asset</button>
+                    <button class="add-btn" onclick="addAsset()">+ Add Asset</button>
                 </div>
                 <hr class="divider">
                 <div class="template">
@@ -64,13 +81,13 @@ document.addEventListener('DOMContentLoaded', function () {
                 <div class="template">
                     <h3>Employees</h3>
                     <div id="workforceList"></div>
-                    <button class="add-btn blue-button" onclick="addWorkforce()">+ Add Workforce</button>
+                    <button class="add-btn" onclick="addWorkforce()">+ Add Workforce</button>
                 </div>
                 <hr class="divider">
                 <div class="template">
                     <h3>Equipment</h3>
                     <div id="equipmentList"></div>
-                    <button class="add-btn blue-button" onclick="addEquipment()">+ Add Equipment</button>
+                    <button class="add-btn" onclick="addEquipment()">+ Add Equipment</button>
                 </div>
                 <hr class="divider">
                 <div class="template">
@@ -108,13 +125,13 @@ document.addEventListener('DOMContentLoaded', function () {
                 <div class="template">
                     <h3>Employees</h3>
                     <div id="workforceList"></div>
-                    <button class="add-btn blue-button" onclick="addWorkforce()">+ Add Workforce</button>
+                    <button class="add-btn" onclick="addWorkforce()">+ Add Workforce</button>
                 </div>
                 <hr class="divider">
                 <div class="template">
                     <h3>Equipment</h3>
                     <div id="equipmentList"></div>
-                    <button class="add-btn blue-button" onclick="addEquipment()">+ Add Equipment</button>
+                    <button class="add-btn" onclick="addEquipment()">+ Add Equipment</button>
                 </div>
                 <hr class="divider">
                 <div class="template">
@@ -159,13 +176,13 @@ document.addEventListener('DOMContentLoaded', function () {
                 <div class="template">
                     <h3>Employees</h3>
                     <div id="workforceList"></div>
-                    <button class="add-btn blue-button" onclick="addWorkforce()">+ Add Workforce</button>
+                    <button class="add-btn" onclick="addWorkforce()">+ Add Workforce</button>
                 </div>
                 <hr class="divider">
                 <div class="template">
                     <h3>Equipment</h3>
                     <div id="equipmentList"></div>
-                    <button class="add-btn blue-button" onclick="addEquipment()">+ Add Equipment</button>
+                    <button class="add-btn" onclick="addEquipment()">+ Add Equipment</button>
                 </div>
                 <hr class="divider">
                 <div class="template">
@@ -231,7 +248,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     <option value="Meter">Meter</option>
                     <option value="Cubic Meter">Cubic Meter</option>
                 </select>
-                <button class="remove-btn red-button" onclick="this.parentElement.parentElement.remove()">- Remove</button>
+                <button class="remove-btn" onclick="this.parentElement.parentElement.remove()">- Remove</button>
             </div>
             <div class="other-asset" style="display: none;">
                 <input type="text" placeholder="Enter other asset type">
@@ -267,7 +284,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 </select>
                 <input type="text" placeholder="Job Number">
                 <input type="number" placeholder="Work Hours">
-                <button class="remove-btn red-button" onclick="this.parentElement.parentElement.remove()">- Remove</button>
+                <button class="remove-btn" onclick="this.parentElement.parentElement.remove()">- Remove</button>
             </div>
             <div class="other-workforce" style="display: none;">
                 <input type="text" placeholder="Enter other workforce type">
@@ -319,7 +336,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     <option value="Square Meter">Square Meter</option>
                     <option value="Ton">Ton</option>
                 </select>
-                <button class="remove-btn red-button" onclick="this.parentElement.parentElement.remove()">- Remove</button>
+                <button class="remove-btn" onclick="this.parentElement.parentElement.remove()">- Remove</button>
             </div>
             <div class="other-equipment" style="display: none;">
                 <input type="text" placeholder="Enter other equipment type">
