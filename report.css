@@ -71,6 +71,45 @@ input:focus, select:focus, textarea:focus {
     outline: none;
 }
 
+/* إضافة فواصل بين العناصر */
+.divider {
+    border: 0;
+    height: 1px;
+    background-color: #ddd;
+    margin: 20px 0;
+}
+
+/* إضافة مسافات بين العناصر داخل القوالب */
+.template {
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* إضافة مسافات بين العناصر داخل form-group */
+.form-group {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* إضافة مسافات بين العناصر داخل القوائم */
+.asset-item, .workforce-item, .equipment-item {
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* إزالة الحدود من العنصر الأخير */
+.asset-item:last-child, .workforce-item:last-child, .equipment-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
 /* Add Button (Blue) */
 .add-btn {
     background-color: #3498db; /* Blue */
@@ -162,6 +201,15 @@ input:focus, select:focus, textarea:focus {
         flex-direction: column;
         align-items: flex-start;
     }
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+
+    .form-group {
+        flex-direction: column;
+        align-items: flex-start;
+    }
 
     label {
         min-width: 100%;
@@ -176,4 +224,38 @@ input:focus, select:focus, textarea:focus {
     .template {
         padding: 10px;
     }
+
+    /* إضافة مسافات إضافية للأجهزة الصغيرة */
+    .asset-item, .workforce-item, .equipment-item {
+        margin-bottom: 10px;
+        padding-bottom: 10px;
+    }
 }
+    label {
+        min-width: 100%;
+        text-align: left;
+        margin-bottom: 5px;
+    }
+
+    input, select, textarea {
+        width: 100%;
+    }
+
+    .template {
+        padding: 10px;
+    }
+}
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    overflow: hidden; /* لمنع المحتوى من الخروج عن القالب */
+}
+
+.template {
+    overflow: hidden; /* لمنع المحتوى من الخروج عن القالب */
+}
+
