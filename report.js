@@ -5,41 +5,15 @@ const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZ
 
 const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 
-document.addEventListener('DOMContentLoaded', async function () {
-    // بيانات الدخول الافتراضي
-    const defaultUsername = "Mohamed Mokhtar Ali";
-    const defaultJobNumber = "903881";
+document.addEventListener('DOMContentLoaded', function () {
+    const user = { username: 'Mohamed Mokhtar', jobNumber: '903881' };
+    const location = 'Current Location';
 
-    // استرداد بيانات المستخدم الحالي من Supabase
-    const { data: { user } } = await supabase.auth.getUser();
+    // Fill user data
+    document.getElementById('username').value = user.username;
+    document.getElementById('jobNumber').value = user.jobNumber;
+    document.getElementById('location').value = location;
 
-    if (user) {
-        // استرداد بيانات المستخدم من جدول users
-        const { data: userData, error } = await supabase
-            .from('users')
-            .select('username, job_number')
-            .eq('id', user.id)
-            .single();
-
-        if (userData) {
-            // تعبئة بيانات المستخدم في الحقول
-            document.getElementById('username').value = userData.username;
-            document.getElementById('jobNumber').value = userData.job_number;
-        } else {
-            console.error('Error fetching user data:', error);
-            // إذا لم يتم العثور على بيانات المستخدم، نستخدم البيانات الافتراضية
-            document.getElementById('username').value = defaultUsername;
-            document.getElementById('jobNumber').value = defaultJobNumber;
-        }
-    } else {
-        console.error('No user is logged in.');
-        // إذا لم يكن هناك مستخدم مسجل، نستخدم البيانات الافتراضية
-        document.getElementById('username').value = defaultUsername;
-        document.getElementById('jobNumber').value = defaultJobNumber;
-    }
-
-
-});
     // Update date and time automatically
     function updateDateTime() {
         const now = new Date();
@@ -47,7 +21,9 @@ document.addEventListener('DOMContentLoaded', async function () {
         document.getElementById('datetime').value = formattedDateTime;
     }
 
-    // Generate a unique report number
+    setInterval(updateDateTime, 1000); // تحديث الوقت كل ثانية
+
+    // Generate a unique report number based on work type and sector
     function generateReportNumber() {
         const reportType = document.getElementById('reportType').value;
         const sector = document.getElementById('sector').value;
