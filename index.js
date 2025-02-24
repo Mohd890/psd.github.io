@@ -24,6 +24,23 @@ loginForm.addEventListener('submit', async function (e) {
         return;
     }
 
+    // الدخول الافتراضي لـ admin
+    if (username === 'admin' && password === 'admin123') {
+        const defaultUser = {
+            id: 1,
+            username: 'admin',
+            full_name: 'Admin User',
+            job_number: '0000',
+            role: 'admin',
+            auth_id: 'default'
+        };
+
+        localStorage.setItem('user', JSON.stringify(defaultUser));
+        window.location.href = 'profile.html'; // توجيه إلى صفحة البروفايل
+        return;
+    }
+
+    // إذا لم يكن الدخول افتراضيًا، نستخدم Supabase للتحقق
     try {
         // جلب بيانات المستخدم من جدول users
         const { data: user, error: userError } = await supabase
