@@ -6,6 +6,10 @@ const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZ
 const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 
 document.addEventListener('DOMContentLoaded', async function () {
+    // بيانات الدخول الافتراضي
+    const defaultUsername = "Mohamed Mokhtar Ali";
+    const defaultJobNumber = "903881";
+
     // استرداد بيانات المستخدم الحالي من Supabase
     const { data: { user } } = await supabase.auth.getUser();
 
@@ -23,13 +27,19 @@ document.addEventListener('DOMContentLoaded', async function () {
             document.getElementById('jobNumber').value = userData.job_number;
         } else {
             console.error('Error fetching user data:', error);
+            // إذا لم يتم العثور على بيانات المستخدم، نستخدم البيانات الافتراضية
+            document.getElementById('username').value = defaultUsername;
+            document.getElementById('jobNumber').value = defaultJobNumber;
         }
     } else {
         console.error('No user is logged in.');
-        // إذا لم يكن هناك مستخدم مسجل، يمكن توجيهه إلى صفحة تسجيل الدخول
-        window.location.href = 'login.html';
+        // إذا لم يكن هناك مستخدم مسجل، نستخدم البيانات الافتراضية
+        document.getElementById('username').value = defaultUsername;
+        document.getElementById('jobNumber').value = defaultJobNumber;
     }
 
+
+});
     // Update date and time automatically
     function updateDateTime() {
         const now = new Date();
